@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-class PolynomialFeatures(tf.keras.layers.Layer):
+class PolynomialFeaturesLayer(tf.keras.layers.Layer):
     """
     This creates Polynomial features of given input.
 
@@ -40,7 +40,7 @@ class PolynomialFeatures(tf.keras.layers.Layer):
     These indices are then applied to At*A and then expanded to get flattened [[x1, x2, x1*x1, x1*x2, x2*x2]]
     """
     def __init__(self, power=4):
-        super(PolynomialFeatures, self).__init__()
+        super(PolynomialFeaturesLayer, self).__init__()
         self.power = power
 
     def build(self, input_shape):
@@ -82,7 +82,7 @@ y = 2*x1+3*x2+5*x1*x2+x1**3+x2**2
 
 #Using in a Model
 inputs = tf.keras.layers.Input(shape=(2))
-layer = PolynomialFeatures(power=2)(inputs)
+layer = PolynomialFeaturesLayer(power=2)(inputs)
 dense = tf.keras.layers.Dense(5)(layer)
 outputs = tf.keras.layers.Dense(1)(dense)
 
